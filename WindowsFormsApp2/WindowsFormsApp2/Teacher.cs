@@ -8,9 +8,12 @@ namespace WindowsFormsApp2
 {
     class Teacher:Person
     {
+        private List<Student> StudentList = new List<Student>();
         private List<Student> CourseWorkStudents;
         private int MaxNumberOfCourseWorks;
         private string subject;
+        public int maxcount { get { return MaxNumberOfCourseWorks; } set { MaxNumberOfCourseWorks = value; } }
+        public List<Student> studentlist { get { return StudentList; } set { StudentList = value; } }
         public Teacher(int MaxNumberOfCourseWorks, string subject, string name, string surname, int age, Adress adress) : base(name, surname, age, adress)
         {
             this.subject = subject;
@@ -35,6 +38,10 @@ namespace WindowsFormsApp2
         public string GetInfoTeacher()
         {
             return base.GetInfo() + subject.ToString();
+        }
+        public void RemoveStudent(int i)
+        {
+            StudentList.RemoveAt(i);
         }
     }
 }

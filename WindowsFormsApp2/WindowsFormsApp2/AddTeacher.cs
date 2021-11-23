@@ -12,6 +12,8 @@ namespace WindowsFormsApp2
 {
     public partial class AddTeacher : Form
     {
+        public delegate void Send();
+        public static event Send SendT;
         public AddTeacher()
         {
             InitializeComponent();
@@ -33,10 +35,12 @@ namespace WindowsFormsApp2
             int house = Convert.ToInt32(this.textBox8.Text);
             Adress address = new Adress(city, street, house);
             Teacher teacher = new Teacher(maxnum, subject, name, surname, age, address);
+            TeacherList.listTeacher.Add(teacher);
         }
         private void button1_Click(object sender, EventArgs e)
         {
-
+            AddNewTeacher();
+            SendT?.Invoke();
         }
     }
 }

@@ -12,14 +12,27 @@ namespace WindowsFormsApp2
 {
     public partial class AddStudent : Form
     {
+        public delegate void Send();
+        public static event Send SendS;
         public AddStudent()
         {
+
             InitializeComponent();
             InitialComboBox();
+            InitialComboBox2();
         }
         public void InitialComboBox()
         {
             this.comboBox1.Items.AddRange(Enum.GetNames(typeof(typeStudent)));
+        }
+        public void InitialComboBox2()
+        {
+            comboBox2.Items.Clear();
+            for (int index = 0; index < TeacherList.listTeacher.Count; index++)
+            {
+                if (TeacherList.listTeacher[index].studentlist.Count < TeacherList.listTeacher[index].maxcount)
+                    comboBox2.Items.Add(TeacherList.listTeacher[index].Surname + " " + TeacherList.listTeacher[index].Name);
+            }
         }
         public void CreateNewStudent()
         {
@@ -33,10 +46,25 @@ namespace WindowsFormsApp2
             Adress address = new Adress(city, street, house);
             typeStudent type1 = (typeStudent)this.comboBox1.SelectedIndex;
             Student student = new Student(groupe, name, surname, age, address, type1);
+            if (comboBox1.SelectedItem.ToString() == comboBox1.SelectedItem.ToString())
+            {
+                string number = comboBox1.SelectedItem.ToString();
+                for (int index = 0; index < TeacherList.listTeacher.Count; index++)
+                {
+                    string count = TeacherList.listTeacher[index].Surname + " " + TeacherList.listTeacher[index].Name;
+                    if (number == count)
+                    {
+                        TeacherList.listTeacher[index].AddCourseWorkStudent(student);
+
+                    }
+                }
+            }
         }
+        
         private void button1_Click(object sender, EventArgs e)
         {
-
+            CreateNewStudent();
+            SendS?.Invoke();
         }
     }
 }

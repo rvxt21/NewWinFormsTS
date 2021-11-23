@@ -16,6 +16,8 @@ namespace WindowsFormsApp2
         private List<Student> list1 = new List<Student>();
         public Form1()
         {
+            AddTeacher.SendT += Components;
+            AddStudent.SendS += Components;
             InitializeComponent();
             list = new List<Teacher>();
             InitialModel();
@@ -50,6 +52,15 @@ namespace WindowsFormsApp2
                 tabel.Rows.Add(i + 1, list[i].Name, list[i].Surname, list[i].Age, list[i].Group, list[i].TypeStudent, list[i].Adress.City, list[i].Adress.Street, list[i].Adress.House);
             this.dataGridView2.DataSource = tabel;
         }
+        private void Components()
+        {
+            treeView1.Nodes.Clear();
+            InitialTreeView();
+            DataTable(TeacherList.listTeacher);
+            List<Student> lst = new List<Student>();
+            DataTableStudent(lst);
+            
+        }
         private void DataTable(List<Teacher> list)
         {
 
@@ -69,6 +80,24 @@ namespace WindowsFormsApp2
                 //StaticTeacher.ListTeacher.Add(list[i]);
             }
             this.dataGridView1.DataSource = tabel;
+        }
+        private void ButtonRefresh_Click(object sender, EventArgs e)
+        {
+            Components();
+        }
+        public void Studentinitialize()
+        {
+            for (int k = 0; k < TeacherList.listTeacher.Count(); k++)
+            {
+                for (int j = 0; j < TeacherList.listTeacher[k].studentlist.Count(); j++)
+                {
+                    Student b = TeacherList.listTeacher[k].studentlist[j];
+                    List<Student> lst = new List<Student>();
+                    lst.Add(b);
+                    DataTableStudent(lst);
+                }
+            }
+
         }
         public void InitialComboBox()
         {
@@ -95,6 +124,9 @@ namespace WindowsFormsApp2
             teacher2.AddCourseWorkStudent(student5);
             list.Add(teacher1);
             list.Add(teacher2);
+            TeacherList.listTeacher.Add(teacher1);
+            TeacherList.listTeacher.Add(teacher2);
+
             //StaticTeacher.ListTeacher.Add(teacher2);
             //StaticTeacher.ListTeacher.Add(teacher1);
             //StaticTeacher.ListTeacher.AddRange(list);
@@ -127,17 +159,21 @@ namespace WindowsFormsApp2
         public void InitialTreeView()
         {
             TreeNode root = new TreeNode();
-
             root.Name = "Root";
-            root.Text = "List";
+            root.Text = "List teachers";
             this.treeView1.Nodes.Add(root);
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < TeacherList.listTeacher.Count; i++)
             {
-                this.treeView1.Nodes[0].Nodes.Add(list[i].Name + " " + list[i].Surname);
-                List<Student> listStudent = list[i].getCourseWorkStudents();
+                this.treeView1.Nodes[0].Nodes.Add(TeacherList.listTeacher[i].Name + " " + TeacherList.listTeacher[i].Surname);
+                List<Student> listStudent = TeacherList.listTeacher[i].getCourseWorkStudents();
                 for (int j = 0; j < listStudent.Count; j++)
+                {
                     this.treeView1.Nodes[0].Nodes[i].Nodes.Add(listStudent[j].Name + " " + listStudent[j].Surname);
+                    
+                }
+                
             }
+            
 
             /*
             this.treeView1.Nodes[0].Nodes.Add("text1");
@@ -162,6 +198,11 @@ namespace WindowsFormsApp2
         {
             AddStudent f1 = new AddStudent();
             f1.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
