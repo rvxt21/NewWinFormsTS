@@ -18,6 +18,8 @@ namespace WindowsFormsApp2
         {
             AddTeacher.SendT += Components;
             AddStudent.SendS += Components;
+            DeleteTeacher.SendDeleteTeacher += Components;
+            DeleteStudent.SendDeletedS += Components;
             InitializeComponent();
             list = new List<Teacher>();
             InitialModel();
@@ -171,7 +173,7 @@ namespace WindowsFormsApp2
                     this.treeView1.Nodes[0].Nodes[i].Nodes.Add(listStudent[j].Name + " " + listStudent[j].Surname);
                     
                 }
-                
+                treeView1.ExpandAll();
             }
             
 
@@ -203,6 +205,18 @@ namespace WindowsFormsApp2
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void deleteStudentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteStudent ds = new DeleteStudent();
+            ds.Show();
+        }
+
+        private void deleteTeacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteTeacher dt = new DeleteTeacher();
+            dt.Show();
         }
     }
 }

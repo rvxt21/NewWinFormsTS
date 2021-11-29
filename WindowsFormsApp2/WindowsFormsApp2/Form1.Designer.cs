@@ -29,9 +29,9 @@ namespace WindowsFormsApp2
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addTeacherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +42,9 @@ namespace WindowsFormsApp2
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteTeacherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteStudentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -52,7 +55,8 @@ namespace WindowsFormsApp2
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem});
+            this.addToolStripMenuItem,
+            this.deleteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1321, 28);
@@ -112,16 +116,16 @@ namespace WindowsFormsApp2
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(865, 31);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Age";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Age";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(444, 386);
             this.chart1.TabIndex = 4;
             this.chart1.Text = "chart1";
@@ -144,6 +148,29 @@ namespace WindowsFormsApp2
             this.button1.Text = "FIND STUDENT";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteTeacherToolStripMenuItem,
+            this.deleteStudentToolStripMenuItem});
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // deleteTeacherToolStripMenuItem
+            // 
+            this.deleteTeacherToolStripMenuItem.Name = "deleteTeacherToolStripMenuItem";
+            this.deleteTeacherToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.deleteTeacherToolStripMenuItem.Text = "Delete teacher";
+            this.deleteTeacherToolStripMenuItem.Click += new System.EventHandler(this.deleteTeacherToolStripMenuItem_Click);
+            // 
+            // deleteStudentToolStripMenuItem
+            // 
+            this.deleteStudentToolStripMenuItem.Name = "deleteStudentToolStripMenuItem";
+            this.deleteStudentToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.deleteStudentToolStripMenuItem.Text = "Delete student";
+            this.deleteStudentToolStripMenuItem.Click += new System.EventHandler(this.deleteStudentToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -182,6 +209,9 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteTeacherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteStudentToolStripMenuItem;
     }
 }
 
